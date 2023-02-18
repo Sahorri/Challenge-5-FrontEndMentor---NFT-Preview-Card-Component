@@ -1,0 +1,202 @@
+/** CSS RESETS **/
+
+/* 1. Reset margin/padding + Border-Box Model */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Améliorer le rendu du texte */
+
+body {
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 3. Améliorer les média par défaut car (img = par défaut inline) => Responsive */
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 4. Supprimer le style de typo de base */
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* 5. Eviter l'overflow des textes même avec des petites viewport */
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+/** CSS VARIABLES **/
+
+:root {
+    /* Colors */
+--soft-blue: hsl(215, 51%, 70%);
+--cyan: hsl(178, 100%, 50%);
+--very-dark-blue-main-bg : hsl(217, 54%, 11%);
+--very-dark-blue-card-bg : hsl(216, 50%, 16%);
+--very-dark-blue-line: hsl(215, 32%, 27%);
+--white: hsl(0, 0%, 100%);
+    /* Font-Family */
+--ff-outfit: 'Outfit', sans-serif;
+    /* Font-Weight */
+--fw-light: 300;
+--fw-regular: 400;
+--fw-semibold: 600;
+}
+
+/** GENERAL STYLE **/
+
+body {
+    font-size: 0.875rem; /* soit 16px x 0.875 = 14px */
+    font-family: var(--ff-outfit);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--very-dark-blue-main-bg);
+    margin: 1rem;
+}
+
+/** THE CARD **/
+
+.card {
+    background-color: var(--very-dark-blue-card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 22rem;
+}
+
+/** HOVER IMAGE **/
+
+/* Mettre l'image dans un container + Mettre le container de l'image en position relative */
+.card__container{ 
+    position: relative;
+    width: 100%;
+}
+
+.overlay { /* Style le container qui va se superposer */
+    position:absolute;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    height: 100%; 
+    width: 100%;
+    opacity: 0; 
+    transition: all .3s;
+    background-color:hsl(178, 100%, 50%);
+}
+
+.card__container:hover .overlay { /* Appliquer le hover */
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.overlay__image { /*Placer l'image au centre */
+    position: relative;
+    top: 130px;
+    left: 130px;
+}
+
+/** TEXT STYLE **/
+
+.card__title {
+    color: var(--white);
+    font-weight: var(--fw-semibold);
+    font-size: 1.3rem;
+    align-self: flex-start;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.card__title:hover {
+    cursor: pointer;
+    color: var(--cyan);
+}
+
+.card__info {
+    color: var(--soft-blue);
+    font-size: 1.1rem;
+    font-weight: var(--fw-light);
+    align-self: flex-start;
+    padding-bottom: 0.8rem;
+}
+
+.card__price {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.8rem;
+}
+
+.card__price__eth {
+    color: var(--cyan);
+    font-size: 1rem;
+    font-weight: var(--fw-semibold);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__price__eth::before { /* Insertion image etherum avant le prix */
+    content: url("images/icon-ethereum.svg");
+    width: 11px;
+    height: 18px;
+    margin-right: 0.5rem;
+}
+
+.card__price__offer {
+    color: var(--soft-blue);
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__price__offer::before{ /* Insertion image horloge avant date */
+    content: url("images/icon-clock.svg");
+    width: 17px;
+    height: 17px;
+    margin-right: 0.5rem;
+}
+
+.card__designer {
+    display: flex;
+    border-top: solid 1px var(--soft-blue);
+    padding-top: 1.2rem;
+}
+
+.card__designer__avatar {
+    border: 1px solid white;
+    border-radius: 10rem;
+    width: 10%;
+    margin-right: 0.5rem;
+}
+
+.card__designer__name {
+    color: var(--soft-blue);
+    font-size: 1rem;
+}
+
+strong {
+    color: var(--white);
+    font-weight: var(--fw-regular);
+}
+
+strong:hover{
+    cursor: pointer;
+    color: var(--cyan);
+}
